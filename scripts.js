@@ -27,6 +27,13 @@ $('.chat').submit(function(e) {
   });
 });
 
+function createUserId(){
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = Math.random()*16|0, v = c == 'x' ? r : (r&0x3|0x8);
+      return v.toString(16);
+  });
+}
+
 // read from db and write to page
 chatDb.on('child_added', function(data) {
   console.log('new message!');
