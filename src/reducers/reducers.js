@@ -1,14 +1,14 @@
-import { TOGGLE__BUTTON } from '../actions/testAction'
+import { SEND__MESSAGE, ADD__NEW__MESSAGE } from '../actions'
 
-function reducer(state, action) {
+const rootReducer = (state = {}, action) => {
   switch (action.type) {
-    case TOGGLE__BUTTON:
+    case ADD__NEW__MESSAGE:
       return Object.assign({}, state, {
-         button: !state.button
-       })
+        messages: [...state.messages, action.message]
+      });
    default:
     return state;
   }
 }
 
-export default reducer;
+export default rootReducer;

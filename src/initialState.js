@@ -1,5 +1,5 @@
 const initialState = {
-  button: false
+  messages: []
 }
 
 export default initialState
