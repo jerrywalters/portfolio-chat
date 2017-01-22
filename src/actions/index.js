@@ -1,8 +1,7 @@
-import firebaseDB from '../firebaseDB';
+import firebaseDB, { getUserId } from '../firebaseDB';
 
 export const SEND__MESSAGE = 'SEND__MESSAGE';
 export const ADD__NEW__MESSAGE = 'ADD_NEW_MESSAGE';
-export const ADD__NEW__CONVERSATION = 'ADD_NEW_CONVERSATION';
 
 export function addNewMessage(message){
   return {
@@ -11,17 +10,11 @@ export function addNewMessage(message){
   }
 }
 
-export function addNewConversation(conversation){
-  return {
-    type: ADD__NEW__CONVERSATION,
-    conversation: conversation,
-  }
-}
-
 // pushes message to firebase
 export function sendMessage(message) {
   firebaseDB.ref('messages').push({
     message,
+    conversationId: getUserId(),
     createdOn: Date.now(),
   }, function(){
     console.log('success');

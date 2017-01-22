@@ -30,7 +30,7 @@ function uid(){
   });
 }
 
-function getUserId(){
+export function getUserId(){
   var userId = '';
   // get and or set user
   if(localStorage.user){
@@ -51,7 +51,11 @@ function getUserId(){
   return userId;
 }
 
+let userId = getUserId();
+
 db.ref('messages')
+  .orderByChild('conversationId')
+  .equalTo(userId)
   .on('child_added', function(data) {
     const message = data.val();
     store.dispatch(addNewMessage(message));

@@ -1,4 +1,4 @@
-import { SEND__MESSAGE, ADD__NEW__MESSAGE, ADD__NEW__CONVERSATION } from '../actions'
+import { SEND__MESSAGE, ADD__NEW__MESSAGE} from '../actions'
 
 const rootReducer = (state = {}, action) => {
   switch (action.type) {
@@ -6,10 +6,6 @@ const rootReducer = (state = {}, action) => {
       return Object.assign({}, state, {
         messages: [...state.messages, action.message]
       });
-    // case ADD__NEW__CONVERSATION:
-    //   return Object.assign({}, state, {
-    //
-    //   });
    default:
     return state;
   }
