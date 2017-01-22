@@ -14,6 +14,7 @@ export function addNewMessage(message){
 export function sendMessage(message) {
   firebaseDB.ref('messages').push({
     message,
+    author: 'client',
     conversationId: getUserId(),
     createdOn: Date.now(),
   }, function(){
