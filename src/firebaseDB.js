@@ -1,6 +1,7 @@
 import firebase from 'firebase';
 import { addNewMessage, addNewConversation } from './actions';
 import store from './index';
+import { fullName } from './nameGenerator';
 
 // Initialize Firebase
 const config = {
@@ -30,22 +31,25 @@ function uid(){
   });
 }
 
+// generate a name for this fucker
+const name = fullName();
+
 export function getUserId(){
   var userId = '';
   // get and or set user
   if(localStorage.user){
     var userId = localStorage.user;
-    console.log('you exist:', userId);
-    firebase.database().ref('conversations/' + userId).set({
-      conversationId: userId
-    });
+    // firebase.database().ref('conversations/' + userId).set({
+    //   conversationId: userId
+    // });
   } else {
     userId = uid();
     localStorage.user = userId;
-    console.log('created user');
+    console.log('created new user');
     firebase.database().ref('conversations/' + userId).set({
       conversationId: userId,
-      createdOn: Date.now()
+      name: name,
+      createdOn: Date.now(),
     });
   }
   return userId;

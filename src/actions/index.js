@@ -1,4 +1,5 @@
 import firebaseDB, { getUserId } from '../firebaseDB';
+import { fullName } from '../nameGenerator'
 
 export const SEND__MESSAGE = 'SEND__MESSAGE';
 export const ADD__NEW__MESSAGE = 'ADD_NEW_MESSAGE';
