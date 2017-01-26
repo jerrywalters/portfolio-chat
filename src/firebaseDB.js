@@ -53,6 +53,18 @@ export function getUserId(){
 
 let userId = getUserId();
 
+checkOnline(userId);
+
+function checkOnline(conversationId) {
+  let convoRef = db.ref('conversations/' + conversationId);
+  convoRef.update({
+    isNephewOnline: true
+  })
+  convoRef.onDisconnect().update({
+    isNephewOnline: false
+  });
+}
+
 db.ref('messages')
   .orderByChild('conversationId')
   .equalTo(userId)
