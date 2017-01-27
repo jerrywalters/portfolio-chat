@@ -80,11 +80,13 @@ function setUncleOnline(data) {
 // set isUncleOnline state on load
 db.ref('conversations/').limitToLast(1).on('child_added', function(data) {
   setUncleOnline(data);
+  console.log('uncle is coming online');
 });
 
 // set isUncleOnline state whenever it changes in db
 db.ref('conversations/').limitToLast(1).on('child_changed', function(data) {
   setUncleOnline(data);
+  console.log('uncle is coming online');
 });
 
 

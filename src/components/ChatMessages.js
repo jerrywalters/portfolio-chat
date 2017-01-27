@@ -2,7 +2,7 @@ import React from 'react';
 
 const ChatMessages = ({messages}) => {
   const messageList = messages.map(
-    (message, index) => <li key={index}>{message.message} by: {message.author}</li>
+    (message, index) => <li key={index}>{message.author} : {message.message}</li>
   )
 
   return (
