@@ -1,8 +1,7 @@
 import React from 'react';
 import '../App.css';
 
-import ChatContainer from '../containers/ChatContainer'
-import Chat from '../components/Chat'
+import ChatContainer from './ChatContainer'
 
 const App = () => (
   <div className="App">
