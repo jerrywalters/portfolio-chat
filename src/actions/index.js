@@ -1,8 +1,9 @@
-import firebaseDB, { getUserId } from '../firebaseDB';
+import firebaseDb, { getUserId } from '../firebaseDb';
 import { fullName } from '../nameGenerator'
 
 export const SEND__MESSAGE = 'SEND__MESSAGE';
-export const ADD__NEW__MESSAGE = 'ADD_NEW_MESSAGE';
+export const ADD__NEW__MESSAGE = 'ADD__NEW__MESSAGE';
+export const ADD__UNCLE__STATUS = 'ADD__UNCLE__STATUS';
 
 export function addNewMessage(message){
   return {
@@ -11,9 +12,16 @@ export function addNewMessage(message){
   }
 }
 
+export function addUncleStatus(isUncleOnline) {
+  return {
+    type: ADD__UNCLE__STATUS,
+    isUncleOnline
+  }
+}
+
 // pushes message to firebase
 export function sendMessage(message) {
-  firebaseDB.ref('messages').push({
+  firebaseDb.ref('messages').push({
     message,
     author: 'client',
     conversationId: getUserId(),

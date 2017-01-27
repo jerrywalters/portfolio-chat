@@ -1,5 +1,5 @@
 import firebase from 'firebase';
-import { addNewMessage, addNewConversation } from './actions';
+import { addNewMessage, addNewConversation, addUncleStatus } from './actions';
 import store from './index';
 import { fullName } from './nameGenerator';
 
@@ -70,6 +70,13 @@ function checkOnline(conversationId) {
   });
 }
 
+db.ref('conversations/').limitToLast(1).on('child_changed', function(data) {
+  const conversation = data.val();
+  let isUncleOnline = conversation.isUncleOnline;
+  store.dispatch(addUncleStatus(isUncleOnline));
+});
+
+
 db.ref('messages')
   .orderByChild('conversationId')
   .equalTo(userId)
@@ -82,6 +89,5 @@ db.ref('messages')
     store.dispatch(addNewMessage(message));
 
    });
-
 
 export default db;

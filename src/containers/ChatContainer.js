@@ -5,7 +5,8 @@ import { sendMessage } from '../actions'
 
 const mapStateToProps = (state) => {
   return {
-    messages: state.messages
+    messages: state.messages,
+    isUncleOnline: state.isUncleOnline
   }
 }
 
@@ -23,3 +24,5 @@ const ChatContainer = connect(
 )(Chat)
 
 export default ChatContainer
+
+// TODO: refactor this shit into the right directory structure. /components/babycontainer
