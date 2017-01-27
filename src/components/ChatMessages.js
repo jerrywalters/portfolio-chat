@@ -1,9 +1,10 @@
 import React from 'react';
 
 const ChatMessages = ({messages}) => {
-  let messageList = messages.map(
-    (message, index) => <li key={index}>{message.message + ', milord.'} </li>
+  const messageList = messages.map(
+    (message, index) => <li key={index}>{message.message} by: {message.author}</li>
   )
+
   return (
     <div>
       <ul>
