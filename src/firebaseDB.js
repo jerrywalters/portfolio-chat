@@ -50,6 +50,7 @@ export function getUserId(){
       conversationId: userId,
       name: name,
       createdOn: Date.now(),
+      lastChat: Date.now()
     });
   }
   return userId;
@@ -74,7 +75,12 @@ db.ref('messages')
   .equalTo(userId)
   .on('child_added', function(data) {
     const message = data.val();
+    let convoRef = db.ref('conversations/' + userId);
+    convoRef.update({
+      lastChat: Date.now()
+    })
     store.dispatch(addNewMessage(message));
+
    });
 
 
