@@ -70,10 +70,21 @@ function checkOnline(conversationId) {
   });
 }
 
-db.ref('conversations/').limitToLast(1).on('child_changed', function(data) {
+// set isUncleOnline state
+function setUncleOnline(data) {
   const conversation = data.val();
   let isUncleOnline = conversation.isUncleOnline;
   store.dispatch(addUncleStatus(isUncleOnline));
+}
+
+// set isUncleOnline state on load
+db.ref('conversations/').limitToLast(1).on('child_added', function(data) {
+  setUncleOnline(data);
+});
+
+// set isUncleOnline state whenever it changes in db
+db.ref('conversations/').limitToLast(1).on('child_changed', function(data) {
+  setUncleOnline(data);
 });
 
 
